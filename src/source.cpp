@@ -78,7 +78,7 @@ char* find_pref_two_el(char*a, char* b) {
 	return pref;
 }
 
-char* find_pref(char**a, int n) { // a - массив строк, n - b - кол-во строк
+char* find_pref(char**a, int n) { // a - массив строк, n - кол-во строк
 	if ((a[0] == 0) && (a[1] == 0)) {
 		throw 1;
 	}
@@ -98,4 +98,27 @@ char* find_pref(char**a, int n) { // a - массив строк, n - b - кол-во строк
 }
 
 
+//задача 3
 
+void moving(CNode *str, int position1 , int position2) { // отсчет позиций начинается с 1
+	if (str == 0) {
+		throw 1;
+	}
+	int i;
+	for (i = 1; i < position1; i++) {
+		if (str->next == 0) {
+			throw 1;
+		}
+		str = str->next;
+	}
+	CNode *str_2 = str;
+	for (; i < position2; i++) {
+		if (str_2->next == 0) {
+			throw 1;
+		}
+		str = str->next;
+	}
+	i = str->data;
+	str->data = str_2->data;
+	str_2->data = i;
+}

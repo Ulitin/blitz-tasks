@@ -104,6 +104,107 @@ TEST(find_pref_two_el, correct_4)
 	ASSERT_EQ(1, j);
 }
 
+TEST(moving, correct_on_zero)
+{
+	CNode *a = 0;
+	ASSERT_ANY_THROW(moving(a, 1, 3));
+}
+
+TEST(moving, test_on_correct_moving)
+{
+	CNode *a = new CNode;
+	a->data = 0;
+	a->next = new CNode;
+	a = a->next;
+	a->data = 1;
+	a->next = 0;
+	ASSERT_ANY_THROW(moving(a, 1, 3));
+}
+
+TEST(moving, correct_1)
+{
+	CNode *a = new CNode;
+	CNode *b = a;
+	a->data = 0;
+	a->next = new CNode;
+	a = a->next;
+	a->data = 1;
+	a->next = new CNode;
+	a = a->next;
+	a->data = 2;
+	a->next = 0;
+
+	moving(b,1,3);
+	ASSERT_EQ(2, b->data);
+	b = b->next;
+	ASSERT_EQ(1, b->data);
+	b = b->next;
+	ASSERT_EQ(0, b->data);
+}
+
+TEST(moving, correct_2)
+{
+	CNode *a = new CNode;
+	CNode *b = a;
+	a->data = 0;
+	a->next = new CNode;
+	a = a->next;
+	a->data = 1;
+	a->next = new CNode;
+	a = a->next;
+	a->data = 2;
+	a->next = 0;
+
+	moving(b, 2, 3);
+	ASSERT_EQ(0, b->data);
+	b = b->next;
+	ASSERT_EQ(2, b->data);
+	b = b->next;
+	ASSERT_EQ(1, b->data);
+}
+
+TEST(moving, correct_3)
+{
+	CNode *a = new CNode;
+	CNode *b = a;
+	a->data = 0;
+	a->next = new CNode;
+	a = a->next;
+	a->data = 1;
+	a->next = new CNode;
+	a = a->next;
+	a->data = 2;
+	a->next = 0;
+
+	moving(b, 1, 2);
+	ASSERT_EQ(1, b->data);
+	b = b->next;
+	ASSERT_EQ(0, b->data);
+	b = b->next;
+	ASSERT_EQ(2, b->data);
+}
+
+TEST(moving, moving_the_same_element)
+{
+	CNode *a = new CNode;
+	CNode *b = a;
+	a->data = 0;
+	a->next = new CNode;
+	a = a->next;
+	a->data = 1;
+	a->next = new CNode;
+	a = a->next;
+	a->data = 2;
+	a->next = 0;
+
+	moving(b, 1, 1);
+	ASSERT_EQ(0, b->data);
+	b = b->next;
+	ASSERT_EQ(1, b->data);
+	b = b->next;
+	ASSERT_EQ(2, b->data);
+}
+
 int main(int ac, char* av[])
 {
   testing::InitGoogleTest(&ac, av);

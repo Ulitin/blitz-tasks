@@ -1,6 +1,4 @@
 #include <stack>
-int convert (int x);
-char* find_pref(char**a, int n); 
 
 struct CNode
 {
@@ -8,3 +6,6 @@ struct CNode
 	CNode* next;
 };
 
+int convert (int x);
+char* find_pref(char**a, int n); 
+void moving(CNode*, int, int);
