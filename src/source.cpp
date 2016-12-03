@@ -81,14 +81,14 @@ char* find_pref_two_el(char*a, char* b) {
 		pref[j] = a[mas[0][0] + j];
 	}
 	pref[mas[0][2]] = 0; 
-	for (int i = 0; (i < m) && ((mas+i) != 0); i++) { //////поч?!
+	for (int i = 0; (i < m) && ((mas+i) != 0); i++) {
 		delete [] mas[i];
 	}
 	delete []mas;
 	return pref;
 }
 
-char* find_pref(char**a, int n) { // a - массив строк, n - кол-во строк
+char* find_pref(char**a, int n) { // a - array string, n - number of rows
 	if ((a[0] == 0) && (a[1] == 0)) {
 		throw 1;
 	}
@@ -110,7 +110,7 @@ char* find_pref(char**a, int n) { // a - массив строк, n - кол-во строк
 
 //задача 3
 
-void moving(CNode *str, int position1 , int position2) { // отсчет позиций начинается с 1
+void moving(CNode *str, int position1 , int position2) { // counting of positions starts with 1
 	if (str == 0) {
 		throw 1;
 	}
@@ -162,7 +162,7 @@ int** search_pair_of_elements(int *mas, int size) {
 	}
 	int min = 0;
 	int max = 0;
-	int **output = new int*[size*size]; // output - заполняються числа удволетворяющие поиску заданной в задании   output[i][0]=a output[i][1]=d output[i][2]=a+b
+	int **output = new int*[size*size]; // output[i][0]=a output[i][1]=d output[i][2]=a+b
 	for (int i = 0; i < (size*size); i++) {
 		output[i] = new int[3];
 	}
