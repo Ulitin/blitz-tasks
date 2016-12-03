@@ -17,7 +17,7 @@ TEST(Convert, correct_namber_with_minus)
 
 }
 
-TEST(find_pref_two_el, correct_on_zero)
+TEST(find_pref, correct_on_zero)
 {
 	char* a = "aas";
 	char **x;
@@ -28,7 +28,7 @@ TEST(find_pref_two_el, correct_on_zero)
 }
 
 
-TEST(find_pref_two_el, correct_1)
+TEST(find_pref, correct_1)
 {
 	char* a = "aas";
 	char* b = "aas";
@@ -47,7 +47,7 @@ TEST(find_pref_two_el, correct_1)
 	ASSERT_EQ(3,j);
 }
 
-TEST(find_pref_two_el, correct_2)
+TEST(find_pref, correct_2)
 {
 	char* a = "aas";
 	char* b = "as";
@@ -66,7 +66,7 @@ TEST(find_pref_two_el, correct_2)
 	ASSERT_EQ(2, j);
 }
 
-TEST(find_pref_two_el, correct_3)
+TEST(find_pref, correct_3)
 {
 	char* a = "aas";
 	char* b = "las";
@@ -87,7 +87,7 @@ TEST(find_pref_two_el, correct_3)
 	ASSERT_EQ(2, j);
 }
 
-TEST(find_pref_two_el, correct_4)
+TEST(find_pref, correct_4)
 {
 	char* a = "aas";
 	char* b = "azs";
@@ -103,6 +103,24 @@ TEST(find_pref_two_el, correct_4)
 	for (j; c[j] != 0; j++) {}
 	ASSERT_EQ(1, j);
 }
+
+TEST(find_pref, correct_5)
+{
+	char* a = "a";
+	char* b = "s";
+	char* q = "z";
+	char **x;
+	char *c;
+	int j = 0;
+	x = new char*[3];
+	*x = a;
+	*(x + 1) = b;
+	*(x + 2) = q;
+	c = find_pref(x, 3);
+	for (j; c[j] != 0; j++) {}
+	ASSERT_EQ(0, j);
+}
+
 
 TEST(moving, correct_on_zero)
 {
@@ -204,6 +222,44 @@ TEST(moving, moving_the_same_element)
 	b = b->next;
 	ASSERT_EQ(2, b->data);
 }
+
+TEST(search_pair_of_elements, test_on_zero)
+{
+	int *mas = 0;
+	ASSERT_ANY_THROW(search_pair_of_elements(mas,5));
+}
+
+TEST(search_pair_of_elements, input_zero_elements)
+{
+	int *mas = new int [3];
+	mas[0] = 0;
+	mas[1] = 5;
+	mas[2] = 1;
+	int **output;
+	output = search_pair_of_elements(mas, 3);
+	ASSERT_EQ(-1, output[0][0]);
+	ASSERT_EQ(-1, output[0][1]);
+}
+
+TEST(search_pair_of_elements, test)
+{
+	int *mas = new int[6];
+	mas[0] = 1;
+	mas[1] = 6;
+	mas[2] = 0;
+	mas[3] = 3;
+	mas[4] = -5;
+	mas[5] = 2;
+	int **output;
+	output = search_pair_of_elements(mas, 6);
+	ASSERT_EQ(1, output[0][0]);
+	ASSERT_EQ(2, output[0][1]);
+	ASSERT_EQ(3, output[0][2]);
+	ASSERT_EQ(6, output[1][0]);
+	ASSERT_EQ(-5, output[1][1]);
+	ASSERT_EQ(1, output[1][2]);
+}
+
 
 int main(int ac, char* av[])
 {

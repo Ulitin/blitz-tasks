@@ -7,5 +7,6 @@ struct CNode
 };
 
 int convert (int x);
-char* find_pref(char**a, int n); 
+char* find_pref(char**, int); 
 void moving(CNode*, int, int);
+int** search_pair_of_elements(int*, int);
